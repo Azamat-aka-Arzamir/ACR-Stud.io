@@ -1,0 +1,17 @@
+.cum{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: blueviolet;
+}
+.floatingHeader{
+    background-color:pink;
+    color:black;
+    border-radius: 10px;
+    position: fixed;
+    margin-top: 10px;
+    padding-left: 1%;
+    padding-right: 70vw;
+    z-index: 0;
+}
+#basicTab{
+    margin-left: 1%;
+}
