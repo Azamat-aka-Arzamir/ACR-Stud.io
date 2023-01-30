@@ -1,17 +1,43 @@
-.cum{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: blueviolet;
-}
-.floatingHeader{
-    background-color:pink;
-    color:black;
-    border-radius: 10px;
+@font-face {
+    font-family: UnderCUM;
+    src: url('Undertale-Battle-Font.ttf');
+  }
+.headerHolder{
+    font-family: UnderCUM;
     position: fixed;
-    margin-top: 10px;
-    padding-left: 1%;
-    padding-right: 70vw;
-    z-index: 12;
+    background-color: black;
+    border-radius: 5px;
+    margin: 0% 5% 3% 5%;
+    padding: 10px;
+    display: flex;
+    width: 90%;
+    gap:10px;
+    flex-wrap: wrap;
+    height: auto;
 }
-#basicTab{
-    margin-left: 1%;
+.headerContainer{
+    min-width: max-content;
+    flex-grow: 1;
+    gap:10px;
+    display: flex;
+    align-items: stretch;
+}
+.headerItem{
+    padding: auto;
+    border-radius: 5px;
+    width: 100%;
+    min-width: max-content;
+    color: white;
+    float: left;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+#menuItem{
+    background-color: #353535;
+    font-size:xx-large;
+}
+#accentItem{
+    background-color: red;
+    font-size:xx-large;
 }
