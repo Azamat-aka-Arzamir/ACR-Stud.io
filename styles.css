@@ -42,16 +42,19 @@
 }
 #menuItem:hover{
     background-color: rgb(96, 96, 96);
+    color: white;
 }
 #menuItem{
     background-color: #353535;
     text-decoration:none;
     font-size:xx-large;
+    color: white;
 }
 #menuItemSelected{
     background-color: rgb(96, 96, 96);
     text-decoration:none;
     font-size:xx-large;
+    color: white;
 }
 #accentItem{
     background-color: red;
