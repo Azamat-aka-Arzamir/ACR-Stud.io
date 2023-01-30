@@ -5,13 +5,17 @@
 .headerHolder{
     font-family: UnderCUM;
     position: fixed;
+    left: 0;
+    right: 0;
+    top:0;
     background-color: black;
     border-radius: 5px;
-    margin: 0% 5% 3% 5%;
     padding: 10px;
     display: flex;
     min-width: min-content;
-    width: 90%;
+    max-width: 100%;
+    margin:2%;
+    width: auto;
     gap:10px;
     flex-wrap: wrap;
     height: auto;
