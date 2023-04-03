@@ -31,13 +31,13 @@ function ObjToElement(data){
 async function fetchData(){
     let data;
     try{
-        const response = await fetch("http://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID="+key)
+        const response = await fetch("https://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID="+key)
     data = await response.json();
     console.log(data);
     let now = new WeatherDrawer("Now\n ",Math.round(data.main.temp-273.15)+'\xB0',"feels like "+Math.round(data.main.feels_like-273.15)+'\xB0',data.weather[0].icon,data.wind.speed+" m/s");
     wCont.appendChild(now.GetElement());
 
-    const response2 = await fetch("http://api.openweathermap.org/data/2.5/forecast?q="+city+"&APPID="+key)
+    const response2 = await fetch("https://api.openweathermap.org/data/2.5/forecast?q="+city+"&APPID="+key)
     data = await response2.json();
     console.log(data);
     data.list.forEach(element => {
