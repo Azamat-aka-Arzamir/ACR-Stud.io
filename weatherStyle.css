@@ -1,0 +1,76 @@
+
+@font-face{
+    font-family:openSans;
+    src: url("openSans.woff2") format("woff");
+}
+.window{
+    background-color: rgb(255, 255, 255);
+    border: solid;
+    border-color: var(--tuni-color);
+    border-width: 1px;
+    border-radius: 20px;
+    color:black;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    z-index: 0;
+}
+.weatherWindow{
+    margin: 20px;
+}
+
+h4{
+color:gray;
+}
+h3{
+    height: 50px;
+    width: min-content;
+    margin:auto;
+}
+#locationChange{
+    position: fixed;
+    width: auto;
+    height: auto;
+    left:0px;
+    top:0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 100;
+    background-color:#4e008e21;
+}
+.blured{
+    filter: blur(6px);
+}
+.inversed{
+    background-color:var(--tuni-color);
+    border-color: white;
+    color:white;
+}
+.scrollable{
+    overflow-x: scroll;
+}
+.button:hover{
+    font-family: openSans;
+    background-color:var(--tuni-color);
+    border-radius: 50vh;
+    border: 1px solid;
+    color: white;
+    font-size: large;
+    padding: 0.5em 1em;
+}
+
+:root{
+    --tuni-color: #4E008E;
+    --right: #9dffa7;
+    --wrong: #ff9d9d;
+    font-family: openSans;
+}
+.button{
+    font-family: openSans;
+    border-radius: 50vh;
+    background-color: white;
+    border: 1px solid var(--tuni-color);
+    color: var(--tuni-color);
+    font-size: large;
+    padding: 0.5em 1em;
+}
