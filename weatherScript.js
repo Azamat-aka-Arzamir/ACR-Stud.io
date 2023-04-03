@@ -70,7 +70,7 @@ function setLocationChangeCallbacks(){
 
 
 async function checkCity(){
-    const response = await fetch("http://api.openweathermap.org/geo/1.0/direct?q="+cityField.value +" ,limit=1&APPID="+key);
+    const response = await fetch("https://api.openweathermap.org/geo/1.0/direct?q="+cityField.value +" ,limit=1&APPID="+key);
     const data = await response.json();
     if(data.length>0){
         //console.log(data);
