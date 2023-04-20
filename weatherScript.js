@@ -57,7 +57,7 @@ locationWindowLayout.setAttribute("id","locationChange");
 locationWindowLayout.innerHTML=
     '<div class="window" style="margin:20vw">'+
     '<h2>Choose city from the list</h2>'+
-    '<input type="text" class = "button" id="city" style="margin:10px;">'+
+    '<input type="text" class = "aboba" id="city">'+
     '<button class = "button" id ="citySubmit">Submit</button>'+
     '</div>';
 var cityField;
