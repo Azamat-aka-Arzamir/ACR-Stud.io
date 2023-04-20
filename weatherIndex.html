@@ -3,16 +3,16 @@
     <head>
         <meta http-equiv="refresh" content="50" >
         <link rel="stylesheet" href="weatherStyle.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, height=device-height">
     </head>
-    <body style="margin:0;padding: 4%;">
-        <div id="main"style="max-width: 100%;margin:auto;height: 98vh;">
-            
+    <body>
+        <div id="main">
             <div class="window inversed" id="mainWindow" >
-                <div style="display:inline-block;width: 80%;left:0;margin-right: 100%;">
-                    <object type="text/html" data="logo.html" style="float:left"></object> 
-                    <h1>Weather in <b id="location">Tampere</b> <button class="button" id="changeLocationButton" style="font-size: x-small;">change location</button></h1>
-                </div>
+                <object style="position: absolute; left:0;" type="text/html" data="logo.html"></object>
+                <div id="cityName" style="margin-bottom: 10vh;">
+                    <h1>Weather in <b id="location">Tampere</b></h1>
+                    <button class="button" id="changeLocationButton" style="font-size: x-small;">change location</button>
+                </div>   
                 <div class="window  scrollable" id ="weatherContainer" style="display: flex;">
                 </div>
             </div>

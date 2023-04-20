@@ -73,4 +73,10 @@ h3{
     color: var(--tuni-color);
     font-size: large;
     padding: 0.5em 1em;
+    float: top;
+}
+@media  screen and (max-width:768px) {
+    #cityName{
+        margin-top: 10vh;
+    }
 }
