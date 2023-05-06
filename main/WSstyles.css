@@ -1,0 +1,155 @@
+@font-face{
+    font-family:openSans;
+    src: url("openSans.woff2") format("woff");
+}
+:root{
+    --tuni-color: rgb(78, 0, 142);
+    --tuni-color-transparent: rgba(78, 0, 142, 0.345);
+    --textChoosen: white;
+    --textUnchoosen: rgba(255, 255, 255, 0.579);
+    --textInv: rgb(0, 0, 0);
+        font-family: openSans;
+}
+
+.headerTab{
+    background-color: var(--tuni-color);
+    color: var(--textChoosen);
+    border-radius: 2vh;
+}
+#tabs{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.tab{
+    margin: auto ;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    text-align: center;
+}
+.border{
+    border: 5px solid var(--tuni-color);
+    border-radius: 2vh;
+}
+#workSpace{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    height: 80vh;
+    width: 100%;
+}
+#win1{
+    grid-row: 1/3;
+    margin: 3%;
+    display: flex;
+    flex-direction: column;
+}
+#win2{
+    margin: 3%;
+    display: flex;
+    flex-direction: column;
+}
+#win3{
+    margin: 3%;
+}
+#recordings{
+    padding: 2% 2%;
+    overflow-y: scroll;
+    margin: 0;
+}
+.recording{
+    margin-top:0;
+    margin-bottom: 0;
+}
+.weatherWindow{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden scroll;
+}
+.smallHeader{
+    padding: 3%;
+    background-color: var(--tuni-color);
+    color: var(--textChoosen);
+    display: flex; 
+    flex-wrap: wrap;
+}
+.smallWindow{
+    display: flex;flex-direction: column;margin: 0 ; width: 100%;
+}
+#loadingWrapper{
+    color: var(--textChoosen);
+    background-color: var(--tuni-color-transparent);
+    position: absolute;
+    left:0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    z-index: 100;
+}
+.wheel{
+    position: absolute;
+    width: 10vw;
+    left: 45vw;
+    animation: rotate 1s linear;
+    animation-iteration-count: infinite;
+}
+
+
+.choosen{
+    opacity: 1;
+}
+.unchoosen{
+    opacity: 0.6;
+    transition: 0.2s;
+}
+.inspected{
+    animation: popup 0.2s forwards;
+}
+.clicked{
+    animation: click 0.2s ;
+}
+.uninspected{
+    animation: popout 0.2s forwards;
+}
+@keyframes popup {
+    100%{
+        scale: 1.1;
+        text-shadow: 0px 10px 10px;
+        animation-timing-function: ease;
+        opacity: 1;
+    }
+}
+@keyframes rotate {
+    100%{
+        transform: rotate(360deg);
+    }
+}
+@keyframes click{
+    50%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+@keyframes popout {
+    50%{
+        scale: 0.8;
+        text-shadow: 0px 0px 0px;
+        animation-timing-function: ease;
+    }
+    100%{
+        scale: 1;
+        text-shadow: 0px 0px 0px;
+        animation-timing-function: ease;
+    }
+}
+@media  screen and (max-width:768px) {
+    #mainHeader{
+        padding-top: 50px;
+    }
+    #win3{
+        flex-direction: column;
+    }
+}

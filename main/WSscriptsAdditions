@@ -1,0 +1,174 @@
+//there are realizations for long funcs, so the main script is more readable
+function CreateGraph(id,xValues,yValues){
+    const chart = new Chart(id, {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [{
+            backgroundColor: "#DDCDE8",
+            data: yValues
+          }]
+        }
+    });
+    return chart;
+}
+
+async function FetchAllReadings(timeSpan){
+    if(!timeSpan)return;
+    const replyNames = await fetch("http://webapi19sa-1.course.tamk.cloud/v1/weather/names");
+    const names = await replyNames.json();
+    const a=[];
+    for(let element of names) {
+        const reply = await fetch("http://webapi19sa-1.course.tamk.cloud/v1/weather/"+element.name+"/"+timeSpan);
+        let b = await reply.json();
+        a.push(
+            {
+                name:element.name,
+                readings: b
+            }
+        );
+    };
+    return a;
+}
+async function FetchReadingsNames(){
+    const replyNames = await fetch("http://webapi19sa-1.course.tamk.cloud/v1/weather/names");
+    let names = await replyNames.json();
+    return names;
+}
+function print(obj){
+    console.log(JSON.parse(JSON.stringify(obj)));
+}
+async function FetchWeather(time){
+    neededTime= new Date(time);
+    let t = (Date.now()-neededTime.getTime())/(1000*60*60);
+    let weather={};
+    const weathers =await FetchAllReadings(t);
+    for(let e of weathers){
+        weather[e.name]=Object.values(e.readings[0])[1];
+    }
+    return weather;
+}
+
+async function FetchReadings(timeSpan,readingName){
+    if(!timeSpan)return;
+    if(!readingName)return await FetchAllReadings(timeSpan);
+    let rN = readingName.replace(' ','_')
+    const reply = await fetch("http://webapi19sa-1.course.tamk.cloud/v1/weather/"+rN+"/"+timeSpan);
+    let res=await reply.json();
+    return res;
+}
+async function FetchLastReadings(count){
+    if(!count)return;
+    const reply = await fetch("http://webapi19sa-1.course.tamk.cloud/v1/weather/limit/"+count);
+    const res = await reply.json();
+    let out = []
+    for(let e of res){
+        let a ={
+            date_time:e.date_time,
+            data:Object.values(e.data)[0],
+            measurment: Object.keys(e.data)[0]
+        }
+        out.push(a);
+    }
+
+    return out;
+}
+
+function GetElement(object,className){
+        
+        let out = document.createElement('div');
+        out.setAttribute("class",className);
+        for(let e of Object.keys(object)){
+            let htmlE = document.createElement("h3");
+            htmlE.textContent=e.replace('_',' ')+": "+object[e];
+            htmlE.style.margin="auto 0";
+            out.appendChild(htmlE);
+        }
+        return out;
+    }
+    async function DrawReadings(obj){
+        document.getElementById("recordings").innerHTML="";
+        for(let e of obj){
+            let htmlE = document.createElement("div");
+            htmlE.classList.add("recording");
+            htmlE.style.display="flex";
+            htmlE.style.width="100%";
+            let date = document.createElement("h3");
+            let value = document.createElement("h3");
+            date.style.margin="0";
+            value.style.margin="0 0 0 auto";
+            date.innerText=DateToNormalView(Object.values(e)[0]);
+            value.innerText=Object.values(e)[1];
+
+            htmlE.appendChild(date);
+            if(Object.keys(e).length>2){
+                let meas = document.createElement("h3");
+                meas.style.margin="0 auto  0 10px";
+                meas.innerText=Object.values(e)[2]+":";
+                htmlE.appendChild(meas);
+            }
+            htmlE.appendChild(value);
+            document.getElementById("recordings").appendChild(htmlE);
+        }
+    }
+
+    function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+        });
+        chart.update();
+    }
+    function DateToNormalView(x){
+        d = x.split("T");
+        dd=d[0].split("-");
+        t=d[1].split(":");
+        m=dd[1].split('');
+        let mm;
+        if(m[0]==0)mm=m[1];
+        else mm =dd[1];
+        day=dd[2].split('');
+        let dday;
+        if(day[0]==0)dday=day[1];
+        else dday =dd[2];
+        return t[0]+":"+t[1]+"/"+dday+"."+mm+"."+dd[0].split('')[2]+""+dd[0].split('')[3];
+    }
+    function GetStatistics(readings){
+        _data  = []
+        for(let e of readings){
+            _data.push(parseFloat(Object.values(e)[1]))
+        }let stats={};
+        let total = 0;
+        for (let i = 0; i < _data.length; i++) {
+            total += _data[i];
+        }
+        stats.mean = (total / _data.length).toFixed(2);
+        const length = _data.length;          
+        _data.sort((a, b) => a - b);   
+        if (length % 2 === 0) {
+            stats.median =  ((_data[length / 2 - 1] + _data[length / 2]) / 2).toFixed(2);
+        }
+        else stats.median =  _data[(length - 1) / 2].toFixed(2);
+        const mode = {};
+        let max = 0, count = 0;         
+        for(let i = 0; i < _data.length; i++) {
+            const item = _data[i];            
+            if(mode[item]) {
+                mode[item]++;
+            } 
+            else {
+                mode[item] = 1;
+            }             
+            if(count < mode[item]) {
+                max = item;
+                count = mode[item];
+            }
+        }             
+        stats.mode =  max.toFixed(2);
+        _data.sort((a, b) => a - b);
+        stats.range = [_data[0].toFixed(2), _data[_data.length - 1].toFixed(2)];
+        stats.st_deviation =  Math.sqrt(_data.reduce(function (sq, n) {
+                return sq + Math.pow(n - stats.mean, 2);
+        }, 0) / (_data.length - 1)).toFixed(2);
+        return stats;
+    }

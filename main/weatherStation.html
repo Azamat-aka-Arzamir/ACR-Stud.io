@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="WSstyles.css">
+        <meta name="viewport" content="width=device-width, height=device-height">
+    </head>
+    <body>
+        <div id="loadingWrapper">
+            <h1 style="text-align: center;">Retrieving data. Please wait...</h1>
+            <img src="wheel.png" class="wheel">
+        </div>
+        <div id="blur" style="filter: blur(5px);" >
+        <div class="headerTab">
+            <object style="position: absolute; left:0;top:2%;" type="text/html" data="logo.html" id="logo"></object>
+            <div >
+                <h1 class="tab" id="mainHeader">Weather Station</h1>
+            </div>
+             <div id="tabs"> 
+            </div>
+        </div>  
+        <div id = "workSpace">
+            <div id="win1" class="border">
+                <div class="smallHeader">
+                    <h3 style="margin: 0;">Readings <h5 style="margin: 0 5px 0 auto;">show last </h5><input type="text" id ="count"style="height: fit-content;margin:0;width: 20px;" placeholder="20"></h3></h3>
+                </div>
+                <div id="recordings">
+    
+                </div>
+            </div> 
+            <div id="win2" class="border">
+                <div id="graph" class="smallHeader">
+                    <h3 style="margin: auto;">Timeline</h3>
+                    <h4 style="margin: auto;" class="inspectable">24h</h4>
+                    <h4 style="margin: auto;"class="inspectable">48h</h4>
+                    <h4 style="margin: auto;"class="inspectable">72h</h4>
+                    <h4 style="margin: auto;"class="inspectable">1w</h4>
+                    <h4 style="margin: auto;"class="inspectable">1m</h4>
+                </div>
+                <div style="height: 80%;">
+                    <canvas id="my-chart"></canvas>
+                </div>
+            </div> 
+            <div id="win3" style="display: flex; gap: 5%;">
+                <div id="statistics" class="border smallWindow">
+                    <div class="smallHeader">
+                        <h3 style="margin: auto;">Statistics</h3>
+                    </div>
+                    <h3 style="margin: 10px; color:var(--tuni-color-transparent) ;">Choose measurment to show graph and statistics</h3>
+                </div>
+                <div id="current" class="border smallWindow">
+                    <div class="smallHeader">
+                        <h3 style="margin: auto;">Summary</h3>
+                    </div>
+                    <h3 style="margin: 10px; color:var(--tuni-color-transparent) ;">Choose point on chart to view weather summary</h3>
+                </div>
+            </div> 
+        </div>
+    </div>   
+        <script src="Chart.js"></script>
+        <script src="WSscriptsAdditions"></script>
+        <script src="WSscript.js"></script>
+    </body>
+</html>
