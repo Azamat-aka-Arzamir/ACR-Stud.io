@@ -6,9 +6,11 @@ function CreateGraph(id,xValues,yValues){
           labels: xValues,
           datasets: [{
             backgroundColor: "#DDCDE8",
+            label:"choose measurment",
             data: yValues
           }]
         }
+        
     });
     return chart;
 }

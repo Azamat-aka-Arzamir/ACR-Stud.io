@@ -2,6 +2,8 @@
 const MAXREADINGSCOUNT =200
 var DataSet=[];
 const canv = document.getElementsByTagName("canvas")[0];
+sessionStorage.setItem("tabs","last readings");
+sessionStorage.setItem("graph","24h");
 var rect = canv.parentNode.getBoundingClientRect();
 canv.width = rect.width;
 canv.height = rect.height;
@@ -120,6 +122,7 @@ async function RedrawContent(num){
                 prom.push(a[e]);
             }
         }
+        console.log(chart);
 
         await DrawReadings(prom)
         await RedrawCanvas(prom);
@@ -143,9 +146,11 @@ function toHours(t){
 async function RedrawCanvas(data){
     chart.destroy();
     chart = CreateGraph('my-chart');
+    chart.data.datasets[0].label = sessionStorage.getItem("tabs");
     for(let e of data){
         addData(chart,DateToNormalView(Object.values(e)[0]),Object.values(e)[1]);
     }
+    
 }
 function enableLoading(){
 document.getElementById("loadingWrapper").style.display = "";
